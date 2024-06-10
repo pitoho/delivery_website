@@ -1,6 +1,6 @@
 ---------------УСТАНОВКА--------------------
 
-git clone репозиторий
+git clone https://github.com/pitoho/delivery_website
 
 cd web
 
