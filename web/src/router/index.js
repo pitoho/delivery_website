@@ -3,6 +3,9 @@ import HomeView from '@/views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import PrivateView from '../views/PrivateView.vue'
 import PublicView from '../views/PublicView.vue'
+import FrontView from '../views/FrontView.vue'
+import FullMenu from '@/views/FullMenu.vue'
+import OrderView from '@/views/OrderView.vue'
 
 function checkAuth(){
   if (localStorage.getItem('token')){
@@ -18,7 +21,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: FrontView
     },
     {
       path: '/private',
@@ -28,18 +31,28 @@ const router = createRouter({
     {
       path: '/public',
       name: 'public',
-      component: PublicView
+      component: FullMenu
     },
     {
       path: '/login',
       name: 'login',
       component: LoginView
+    },
+    {
+      path: '/front',
+      name: 'front',
+      component: FrontView
+    },
+    {
+      path: '/order', 
+      name: 'order',
+      component: OrderView
     }
   ]
 })
 
 router.beforeEach((to, from, next)=>{
-  if (to.path==='/private' && !checkAuth()){
+  if ((to.path==='/private' && !checkAuth()) || (to.path==='/order' && !checkAuth())){
     next('/login')
   }else{
     next()

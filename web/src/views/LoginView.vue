@@ -84,12 +84,13 @@ export default {
     </div>
   </template>
 
-  <style>
+  <style scoped>
   .login-layout{
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 500px;
+    padding-top: 10vh
   }
   .title{height: 24px; margin-top: 16px;}
   .form-head{

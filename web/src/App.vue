@@ -1,26 +1,46 @@
-<script>
+<script setup>
 import { RouterLink, RouterView } from 'vue-router'
-export default{
 
+const anchors = document.querySelectorAll('a[href*="#"]')
+
+for (let anchor of anchors) {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault()
+
+    const blockID = anchor.getAttribute('href').substr(1)
+
+    document.getElementById(blockID).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
+  })
 }
+
 
 </script>
 
 <template>
 <div class="container">
-    <header>
-      <ul>
-        <RouterLink to ='/'>
-          Home
-        </RouterLink>
-        <RouterLink to ='/public'>
-          Users
-        </RouterLink>
-        <RouterLink to ='/private'>
-          Profile
-        </RouterLink>
-      </ul>
-    </header>
+	<header>
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+					<a class="marble" href="/">
+						<span class="use">ЗАЧЕМ</span> <span class="web">ВЫБИРАТЬ</span>
+					</a>
+				</div>
+				<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+					<ul class="choice justify-content-between d-flex">
+						<li class="headerch"><a class="clickMenu" href="#procrast">Начало</a></li>
+						<li class="headerch"><a class="clickMenu" href="#routes">Гарнир</a></li>
+						<li class="headerch"><a class="clickMenu" href="#story">Основа</a></li>
+						<li class="headerch"><a class="clickMenu" href="#final">Напиток</a></li>
+						<li class="headerch"><a class="clickMenu" href="#order">Заказ</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
     <RouterView>
 
     </RouterView>
@@ -37,7 +57,18 @@ export default{
 <style>
 @import url('https://fonts.googleapis.com/css2?family=ABeeZee&family=Heebo:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
   
-  body{
+body {
+	font-family: 'Open Sans', sans-serif;
+	padding: 0;
+	margin: 0;
+	font-size: 13px;
+	font-weight: 400;
+	color: #2D3049;
+	letter-spacing: 0.05em;
+	background-image: url("../img/white-needle.png");
+	overflow: hidden;
+}
+   /* body{ 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,7 +82,40 @@ export default{
 
   *{
     font-family: "Heebo", sans-serif;
-  }
+  } */
+  a {
+	text-decoration: none;
+  color: aliceblue;
+}
+  .clickMenu{
+	width: 100px;
+	height: 50px;
+}
+  .use {
+    color: #aa064b;
+}
+.web {
+    color: #429595; 
+}
+.headerch{
+    list-style: none;
+    float: left;
+    text-align: center;
+}
+  .marble {
+    display: block;
+    font-size: 28px;
+    color:  #b2aeb2;
+    text-decoration: none;
+    cursor: pointer;
+}
+  header {
+    background-color: black;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
   .footer-info{
     margin-top: 35px;
     margin-left: 100%;
@@ -77,21 +141,21 @@ export default{
 
   footer{
     position: fixed;
-    bottom: 10%;
+    bottom: 20%;
 
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background-color: black;
     align-items: center;
     justify-content: center;
 
-    height: 80px;
-    width: 350px;
 
     gap:40px;
+    padding: 20px;
+    right: 20px;
 
-    margin-left: 30%;
-    margin-right: 40%;
+    /* margin-left: 30%;
+    margin-right: 40%; */
 
     border-radius: 40px;
   }
@@ -100,7 +164,7 @@ export default{
     
   }
 
-  header{
+  /* header{
     padding: 15px;
     ul{
       list-style-type: none;
@@ -112,6 +176,6 @@ export default{
       text-decoration: none;
       color: black;
 
-    }
-  }
+    } */
+
 </style>

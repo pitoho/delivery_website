@@ -39,7 +39,7 @@ export default {
     </div>
   </template>
 
-<style>
+<style scoped>
     .users-layout{
         padding-top: 70px;
     }

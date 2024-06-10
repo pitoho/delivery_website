@@ -1,0 +1,810 @@
+/* Спецификация / Обнуление */
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	padding: 0;
+	margin: 0;
+	font-size: 13px;
+	font-weight: 400;
+	color: #2D3049;
+	letter-spacing: 0.05em;
+	background-image: url("../img/white-needle.png");
+	overflow: hidden;
+}
+/* -----------------------------------------------------------------------Шапочка--------------------------------------------------------------------  */
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* header {
+    background-color: black;
+} */
+.marble {
+    display: block;
+    font-size: 28px;
+    color:  #b2aeb2;
+    text-decoration: none;
+    cursor: pointer;
+}
+.use {
+    color: #aa064b;
+}
+.web {
+    color: #429595; 
+}
+.logo p {
+    margin-left: 20px;
+    margin-top: 2px;
+    margin-bottom: 5px;
+    font-family:  "Exo2-Medium", sans-serif;
+    font-size: 13px;
+    color: white;
+}
+.headerch{
+    list-style: none;
+    float: left;
+    text-align: center;
+}
+.choice li a {
+    display: block;
+    width: max-content;
+    font-size: 17px;
+    color: white;
+	padding: 20px;
+    cursor: pointer;
+}
+.choice li a:hover {
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition:all 0.5s ease;
+    -moz-transition:all 0.5s ease;
+    background: #00ADE4;
+}
+.block-top-auth {
+    width: 100px;
+    float: left;
+    margin-left: 40px;
+    height: 80px;
+}
+.block-top-auth p {
+    margin-top: 12px;
+    text-align: center;
+    margin-bottom: 8px;
+    
+}
+.block-top-auth a {
+    text-decoration: none;
+    color: white;
+    font-family:  "Exo2-Medium", sans-serif;
+    font-size: 15px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.block-top-auth a:hover {
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition:all 0.5s ease;
+    -moz-transition:all 0.5s ease;
+    color: #00ADE4;
+}
+section {
+	padding-top: 144px;
+}
+* {
+	box-sizing: border-box;
+}
+ul, li {
+	display: block;
+	padding: 0;
+	margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	padding: 0;
+	margin: 0;
+	text-transform: uppercase; /*чтобы заголовки были большими*/
+	font-weight: 800;
+	
+}
+h1{
+	background-color: rgba(0, 0, 0, 0.13);
+	
+}
+p {
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+.container {
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+.container_full-height {
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.btn {
+	padding: 18px 0;
+	background: #FF3773;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 800;
+	display: block;
+	width: 244px;
+	margin: 0 auto;
+	transition: all 0.5s ease; /*- чтобы при наведении на кнопку, цвет кнопки менялся плавно*/
+	text-align: center;
+}
+.btn:hover {
+	background: #FF185E;
+	transform: scale(1.5,1.5);
+}
+
+.btn-ghost {
+	padding: 18px 0;
+	color: #FF3773;
+	border: 1px solid #FF3773;
+	font-size: 16px;
+	font-weight: 800;
+	display: block;
+	width: 329px;
+	text-align: center;
+	transition: all 0.5s ease; /*- чтобы при наведении на кнопку, цвет кнопки менялся плавно*/
+}
+
+.btn-ghost:hover {
+	color: #fff;
+	background: #FF3773;
+	border: 1px solid #FF3773;
+}
+
+.section-title {
+	font-size: 30px;
+	margin-bottom: 89px;
+}
+/* Экран смерти */
+.death {
+	color: white;
+	background-color: black;
+    height: 100vh;
+}
+.reaper img{
+	object-fit: fill;
+	width: 30%;
+	margin-left: 36%;
+}
+
+/*Первая-вторая секция*/
+
+.travel {
+	background: linear-gradient(224.92deg, rgba(19, 19, 51, 0.18) 17.19%, rgba(40, 39, 74, 0.81) 81.74%), url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80') no-repeat center top / cover; /*cover - нужно чтобы при больших разрешениях чем наша картинка, растягивалась на всю ширину разрешения*/
+	text-align: center;
+	color: #fff;
+	padding: 77px 0 80px;
+	height: 100vh;
+}
+
+.offer {
+	margin-top: 195px;
+}
+
+.offer__title {
+	font-size: 60px;
+	letter-spacing: 0.22em;
+	line-height: 1.35em;
+}
+
+.offer__intro {
+	font-size: 20px;
+	margin-top: 10px;
+	margin-bottom: 34px;
+}
+
+.offer__btn {
+	margin: 0 auto;
+}
+
+.arrow-down {
+	background: url(../img/arrow-down.svg) no-repeat bottom;
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 239px auto 0;
+    opacity: 0.5;
+    transition: all 0.5s ease;
+
+}
+
+.arrow-down:hover {
+	opacity: 1;
+}
+
+
+.procrast{
+	text-align: center;
+	color: #fff;
+	padding: 77px 0 80px;
+	animation-name: picchange;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+	height: 100vh;
+}
+@keyframes picchange{
+0%{
+	background: url("https://images.unsplash.com/photo-1536521642388-441263f88a61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80") no-repeat center top / cover;
+}
+12.5%{
+	background: url("https://images.unsplash.com/photo-1536521642388-441263f88a61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80") no-repeat center top / cover;
+}
+37.5%{
+	background: url('https://images.unsplash.com/photo-1445311429009-0b7e0cff714a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80') no-repeat center top / cover; 
+}
+62.5%{
+	background: url('https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80') no-repeat center top / cover; 
+}
+87.5%{
+	background: url('https://images.unsplash.com/photo-1453227588063-bb302b62f50b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80') no-repeat center top / cover;
+}
+100%{
+	background: url("https://images.unsplash.com/photo-1536521642388-441263f88a61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80") no-repeat center top / cover;
+}
+}
+
+/*Третья секция*/
+
+.destinations {
+	
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 89px;
+	margin-top: 20px;
+}
+
+.destinations__block {
+	width: 331px;
+	border: 1px solid #DCDCDC;
+	transition: all 0.5s ease;
+margin-left: 10px;
+height: auto;
+}
+
+.destinations__img {
+
+}
+
+.destinations__img img {
+	object-fit: fill;
+	width: 100%;
+	height: 358px;
+}
+
+.destinations__wrapper {
+	padding: 52px 35px 47px;
+}
+
+.destinations__title {
+	font-size: 18px;
+	margin-bottom: 16px;
+}
+
+.destinations__desc {
+	line-height: 1.67em;
+}
+
+.destinations__info-wrap {
+	margin-top: 38px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.destinations__price {
+	color: #FF3773;
+	font-size: 20px;
+}
+
+.destinations__btn {
+	background: url('../img/arrow-next.svg');
+	width: 25px;
+	height: 21px;
+	display: block;
+	opacity: 0;
+	transition: all 0.5s ease;
+}
+
+.destinations__block:hover {
+	box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.13);
+
+}
+
+.destinations__block:hover .destinations__btn {
+	opacity: 1;
+}
+.routes__title{
+	font-size: 60px;
+	letter-spacing: 0.22em;
+	line-height: 1.35em;
+	background-color: rgba(196, 210, 247, 0);
+}
+
+/*Четвертая секция*/
+
+.story-content {
+	background: #F1F1F5 no-repeat right / 55%;
+	height: 600px;
+}
+
+.story-content__item {
+	font-size: 16px;
+	width: 401px;
+	position: relative;
+	padding-left: 22px;
+	line-height: 1.01em;
+	margin-bottom: 74px;
+	line-height:20px
+}
+
+.story-content__item:before {
+	content:'';
+	display: block;
+	width: 7px;
+	height: 40px;
+	background: #9E9EB7;
+	position: absolute;
+	left: 0;
+}
+.PictureStory{
+	background: url('https://images.unsplash.com/photo-1600044611907-05d3aeedc6e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1412&q=80') no-repeat center top / cover;
+	border-radius:10px;
+	height: 50vh;
+	width: 100vw;
+}
+.arr1,.arr2,.arr3{
+	background: url('../img/arrow-down.svg') no-repeat center bottom/ contain;
+	border-radius: 3px;
+	background-color: rgb(0,0,0,0.13);
+	margin: 5px auto 0;
+height: 40px;
+width: 40px;
+}
+/* .arr1:hover+.PictureStory{
+	animation-name: storch;
+    animation-duration: 2s;
+    animation-iteration-count: infinite; -------------- Не получилось, объекты не соседние(
+}
+@keyframes storch{
+	100%{
+	background: url('../img/india.jpg')
+	}
+} */
+
+ul.story-content__list:hover+.PictureStory {
+	animation-name: storch;
+    animation-duration: 60s;
+    animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+.item1::before{
+	background: rgb(0, 132, 51);
+}
+.arr1:hover{
+	background-color: rgb(0, 132, 51);
+}
+.item2::before{
+	background: rgb(0, 26, 111);
+}
+.arr2:hover{
+	background-color: rgb(0, 26, 111);
+}
+.item3::before{
+	background: rgb(114, 0, 0);
+}
+.arr3:hover{
+	background-color: rgb(114, 0, 0);
+}
+.story__title {
+	font-size: 60px;
+	letter-spacing: 0.22em;
+	line-height: 1.35em;
+	background-color: rgba(196, 210, 247, 0);
+}
+@keyframes storch{
+	2%{
+	background: url('https://images.unsplash.com/photo-1529079018732-bdb88456f8c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80') no-repeat center bottom / cover 
+	}
+	100%{
+		background: url('https://images.unsplash.com/photo-1529079018732-bdb88456f8c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80') no-repeat center bottom / cover 
+	}
+}
+.bold{
+	font-size: 20px;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Пятая секция (финал) */
+.container .finals{
+	display: flex;
+	flex-direction: column;
+}
+.final__title{
+	font-size: 60px;
+	letter-spacing: 0.15em;
+	line-height: 1.35em;
+	background-color: rgba(196, 210, 247, 0);
+	margin-bottom: 20px;
+}
+.text__final{
+	text-align: center;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	font-size: 25px;
+}
+.final-content{
+	background: #F1F1F5 no-repeat right / 55%;
+	height: 600px;
+}
+.card_menu{
+    position: relative;
+    background-color:forestgreen;
+    width: 270px;
+    padding: 10px;
+    border-radius: 40px;
+    box-sizing: border-box;
+    margin: 10px;
+    overflow: hidden;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    align-content: center;
+    text-align: center;
+	color: transparent;
+	transition: all 0.5s ease; /*- чтобы при наведении на кнопку, цвет кнопки менялся плавно*/
+	display: flex;
+}
+.wrapper{
+	background-color: aquamarine;
+    height: 41vh;
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    grid-template-rows: repeat(2,auto);
+    background-color: transparent;
+}
+.card1{
+	background: url(https://img.freepik.com/free-photo/close-up-hand-writing-on-notebook-top-view_23-2148888824.jpg?w=1480&t=st=1671926612~exp=1671927212~hmac=b5f1dd2c4ce9bb384426c66c592a06c2e28b2cff748be87a1e7951b73ad73fa3) no-repeat bottom / cover;
+}
+.card1:hover{
+	color: black;
+	font-size: 30px;
+	transform: scale(1.1,1.1);
+	background: linear-gradient(to right, #91919f,#8d8d9a), url(https://img.freepik.com/free-photo/close-up-hand-writing-on-notebook-top-view_23-2148888824.jpg?w=1480&t=st=1671926612~exp=1671927212~hmac=b5f1dd2c4ce9bb384426c66c592a06c2e28b2cff748be87a1e7951b73ad73fa3) no-repeat bottom / cover;
+    background-blend-mode: screen;
+    background-size: cover;
+}
+.card1:hover .wraptext{
+	opacity: 1;
+}
+.card2{
+background: url(https://img.freepik.com/free-photo/a-person-is-going-to-step-on-a-banana-peel_1101-715.jpg?w=1480&t=st=1671969789~exp=1671970389~hmac=de7010a97db615d124f12bee179929bffaab19410d40c0e5cc54a9fd0494fcd3) no-repeat bottom / cover;
+}
+.card2:hover{
+	color: black;
+	font-size: 30px;
+	transform: scale(1.1,1.1);
+	background: linear-gradient(to right, #91919f,#8d8d9a), url(https://img.freepik.com/free-photo/a-person-is-going-to-step-on-a-banana-peel_1101-715.jpg?w=1480&t=st=1671969789~exp=1671970389~hmac=de7010a97db615d124f12bee179929bffaab19410d40c0e5cc54a9fd0494fcd3) no-repeat bottom / cover;
+    background-blend-mode: screen;
+    background-size: cover;
+}
+.card2:hover .wraptext{
+	opacity: 1;
+}
+.card4{
+	background: url(https://img.freepik.com/free-photo/curly-african-female-student-with-backpack-sitting-on-chair-beside-computer-and-stretching-indoor-portrait-from-back-of-lazy-office-workers-tired-from-hard-work-with-laptops_197531-3720.jpg?w=1480&t=st=1671926983~exp=1671927583~hmac=dab78f854d7c4c3ef75c0bd532405f8f25a229a5c9da78c6f1055df26dbdb469) no-repeat center top / cover;
+}
+.card4:hover{
+	color: black;
+	font-size: 30px;
+	transform: scale(1.1,1.1);
+	background: linear-gradient(to right, #91919f,#8d8d9a), url(https://img.freepik.com/free-photo/curly-african-female-student-with-backpack-sitting-on-chair-beside-computer-and-stretching-indoor-portrait-from-back-of-lazy-office-workers-tired-from-hard-work-with-laptops_197531-3720.jpg?w=1480&t=st=1671926983~exp=1671927583~hmac=dab78f854d7c4c3ef75c0bd532405f8f25a229a5c9da78c6f1055df26dbdb469) no-repeat center top / cover;
+    background-blend-mode: screen;
+    background-size: cover;
+}
+.card4:hover .wraptext{
+	opacity: 1;
+}
+.card3{
+	background: url(https://ic.wampi.ru/2022/12/25/IZOBRAZENIE_2022-12-25_031419054.png) no-repeat bottom right / cover;
+}
+.card3:hover{
+	color: black;
+	font-size: 30px;
+	transform: scale(1.1,1.1);
+	background: linear-gradient(to right, #91919f,#8d8d9a), url(https://ic.wampi.ru/2022/12/25/IZOBRAZENIE_2022-12-25_031419054.png) no-repeat bottom right / cover;
+    background-blend-mode: screen;
+    background-size: cover;
+}
+.card3:hover .wraptext{
+	opacity: 1;
+}
+.med{
+	grid-column: span 2;
+	width: 600px;
+}
+.big{
+	grid-column: span 2;
+	grid-row: span 2;
+	width: 400px;
+	height: 42vh;
+}
+.wraptext{
+	color: black;
+	opacity: 0;
+	margin: 0 auto;
+	align-self: center;
+	font-style:unset;
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Футер */
+.footer{
+	height: 870px;
+}
+.footer_content{
+    background: #F1F1F5 no-repeat right / 55%;
+    display: flex;
+    margin-top: 144px;
+    height: 100%;
+	border-radius: 30px;
+	align-items: center;
+	justify-content: space-between;
+}
+.triang{
+    width: 50%;
+    height: 500px;
+    /* border-top: 60vh solid #20a3bf;
+    border-left: 30vw solid transparent;
+    border-right: 0px solid transparent;
+	position: relative; */
+	background: 
+		linear-gradient(to right, #F1F1F5, transparent), 
+		url(../img/YADEDINSAID.jpg) no-repeat  bottom / cover ;
+	background-blend-mode: screen;
+	background-size: cover;
+	border-radius: 20px;
+	right: 0;
+}
+ /* .triang::before{
+	background-color: #fff;
+	width: 50%;
+    height: 500px;
+	display: block;
+	position: relative; */
+	/* z-index: 50;
+	inset: 0;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	display:block;
+	content:"";
+	background: url(../img/YADEDINSAID.jpg) no-repeat top right; */
+/* }  */
+.description{
+	font-size: 16px;
+	width: 401px;
+	position: relative;
+	padding-left: 22px;
+	line-height: 1.01em;
+	margin-bottom: 74px;
+	line-height:20px;
+	margin: 20px;
+}
+.arrPrav{
+	margin: 40px;
+}
+.footer_item{
+	font-size: 16px;
+	width: 401px;
+	position: relative;
+	padding-left: 22px;
+	line-height: 1.01em;
+	margin-bottom: 50px;
+	line-height:20px
+}
+.fi1::before{
+	content:'';
+	display: block;
+	width: 40px;
+	height: 40px;
+	background: url(https://www.svgrepo.com/show/96440/up-arrow.svg) no-repeat center /cover;
+	transform: rotate(180deg);
+	position: absolute;
+	left: -30px;
+	border-radius: 10px;
+}
+.fi1:hover::before{
+    animation: downpoint 1.5s ease-out infinite;
+}
+@keyframes downpoint{
+    from {
+        transform: translateY(-10px) rotate(-180deg);
+    }
+
+    50% {
+        transform: translateY(10px) rotate(-180deg);
+    }
+
+    to {
+        transform: translateY(-10px) rotate(-180deg);
+    }
+}
+.fi2::before{
+	content:'';
+	display: block;
+	width: 40px;
+	height: 40px;
+	background: url(https://svgsilh.com/svg/296395.svg) no-repeat center /cover;
+	position: absolute;
+	left: -30px;
+	border-radius: 10px;
+}
+.fi2:hover::before{
+	animation: shake 0.3s ease-out infinite;
+}
+@keyframes shake{
+    from {
+        transform: translateY(-3px) rotate(-30deg);
+    }
+
+    50% {
+        transform: translateY(3px) rotate(30deg);
+    }
+
+    to {
+        transform: translateY(-3px) rotate(-30deg);
+    }
+}
+.fi3::before{
+	content:'';
+	display: block;
+	width: 40px;
+	height: 40px;
+	background: url(../img/Tilda_Icons_5_Event_Agency/Tilda_Icons_5ev_magic.svg) no-repeat center /cover;
+	position: absolute;
+	left: -30px;
+	border-radius: 10px;
+}
+.fi3:hover::before{
+	animation: switch 1s cubic-bezier(1,-0.07,1,.52) infinite ;
+}
+@keyframes switch{
+100%{
+	transform: rotate(360deg);
+}
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* Медиа для регулировки размера */
+@media screen and (max-width: 1200px) {
+	
+}
+@media screen and (max-width: 992px) {
+	.marble {
+		text-align: center;
+	}
+	.offer__title {
+		font-size: 40px;
+	}
+	.wrapper{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.story{
+		height: 130vh;
+	}
+	.final{
+		height: 130vh;
+	}
+	.final-content{
+		height: 800px;
+	}
+	.container .finals{
+		height: 130vh;
+	}
+	.footer_content{
+		display: flex;
+		flex-wrap: wrap;
+	}
+}
+
+@media screen and (max-width: 768px) {
+.choice{
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	margin: 0 auto;
+}
+.clickMenu{
+	width: 100px;
+	height: 50px;
+}
+.destinations{
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+}
+.container_full-height{
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+}
+.story-content__list{
+	margin: 0 auto;
+}
+.story__title{
+	font-size: 40px;
+}
+.final__title{
+	font-size: 40px;
+}
+.offer__intro{
+	font-size: 20px;
+}
+.bold{
+	font-size: 20px;
+}
+.story-content__item{
+	font-size: 20px;
+}
+}
+@media screen and (max-width: 576px) {
+.offer__title{
+font-size: 35px;
+}
+.routes__title{
+font-size: 35px;
+}
+.story__title{
+	font-size: 20px;
+}
+.final__title{
+	font-size: 20px;
+}
+.offer__intro{
+	font-size: 15px;
+}
+.bold{
+	font-size: 13px;
+}
+.story-content__item{
+	font-size: 12px;
+}
+body{
+	overflow:visible;
+}
+}
+@media screen and (max-width: 385px) {
+.offer__title{
+font-size: 15px;
+}
+.btn{
+	margin-left:0px;
+}
+.arrPrav{
+	margin-left:-15px
+}
+.footer_item{
+	font-size: 10px;
+}
+.opis{
+	font-size: 10px;
+	margin-left: -35px;
+}
+.description{
+	width: 280px;
+}
+}
