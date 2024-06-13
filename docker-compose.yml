@@ -14,10 +14,9 @@ services:
       - ./server/data:/var/lib/postgresql/data
 
   golang_app:
-    image: golang:latest
+    image: golang:1.21
     container_name: golang_app_container
     volumes:
       - ./server/go_server:/server/go_server
     working_dir: /server/go_server
-    command: go build -o main.exe && ./server/go_server
-
+    # command: main.exe
