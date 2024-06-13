@@ -1,5 +1,5 @@
 -- Создание таблицы для хранения пользовательских данных
-/*CREATE TABLE User_Data (
+CREATE TABLE User_Data (
   id_user SERIAL PRIMARY KEY,
   user_name VARCHAR(255),
   last_name VARCHAR(255),
@@ -43,11 +43,11 @@ CREATE TABLE Tags (
   tag VARCHAR(255)
 );
 
-*/
+
 ------------------------------------------------
 --Процедура на добавление данных в User Data
 
-/*CREATE OR REPLACE PROCEDURE add_user(
+CREATE OR REPLACE PROCEDURE add_user(
     user_name VARCHAR(255),
     last_name VARCHAR(255),
     phone_number VARCHAR(20),
@@ -99,15 +99,4 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-*/
-
--- SELECT table_name
--- FROM information_schema.tables
--- WHERE table_schema = 'public'
--- ORDER BY table_name;
-
--- SELECT routine_name
--- FROM information_schema.routines
--- WHERE routine_schema = 'public' AND routine_type = 'PROCEDURE'
--- ORDER BY routine_name;
 
