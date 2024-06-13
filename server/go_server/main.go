@@ -10,7 +10,7 @@ import (
 
 
 func main() {
-	fs := http.FileServer(http.Dir("../web/dist"))
+	fs := http.FileServer(http.Dir("../../web/dist"))
 	http.Handle("/", fs)
 
 
