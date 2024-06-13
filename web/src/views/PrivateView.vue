@@ -65,6 +65,7 @@ export default {
         justify-content: flex-start;
         align-items: center;
         height: 500px;
+        margin-top: 15vh
     }
     .error{
         color: rgb(33, 36, 61);

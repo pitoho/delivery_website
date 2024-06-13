@@ -48,7 +48,7 @@ for (let anchor of anchors) {
     <footer>
     <router-link to="/"><img class="foot-img" src="./images/home.png" alt=""></router-link>
     <router-link to="/public"><img class="foot-img" src="./images/heart.png" alt=""></router-link>
-    <router-link to="/private"><img class="foot-img" src="./images/bag-2.png" alt=""></router-link>
+    <router-link to="/order"><img class="foot-img" src="./images/bag-2.png" alt=""></router-link>
     <router-link to="/private"><img class="foot-img" src="./images/profile-circle.png" alt=""></router-link>
   </footer>
   </div>

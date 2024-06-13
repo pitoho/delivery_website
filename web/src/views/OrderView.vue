@@ -14,10 +14,8 @@ const bucketStore = useBucketStore()
 					
 				</p>
 		</div>
-		<div class="story-content" id ="story-content">
-			<div class="container container_full-height">
+		<div class="story-content container container_full-height" id ="story-content">
 				<ProductItem v-for="product in bucketStore.order" :key="product.id_dish" :product="product" />
-			</div>
 		</div>
 		<RouterLink to="/private" class="offer__btn btn">
 			В корзину
@@ -26,10 +24,12 @@ const bucketStore = useBucketStore()
 </template>
 
 <style scoped>
+
     .story-content {
 	padding: 20px;
 	background: #F1F1F5 no-repeat right / 55%;
 	height: 600px;
+	display: flex;
 }
 
 .story-content__item {
@@ -58,7 +58,7 @@ const bucketStore = useBucketStore()
 	background-color: rgba(196, 210, 247, 0);
 }
 .story{
-    padding-top: 10vh;
+    padding-top: 15vh;
 		height: 130vh;
 	}
     .story-content__list{

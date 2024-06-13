@@ -48,7 +48,11 @@ const router = createRouter({
       name: 'order',
       component: OrderView
     }
-  ]
+  ],
+  scrollBehavior() {
+    // Всегда прокручивает к началу страницы
+    return { top: 0 };
+  }
 })
 
 router.beforeEach((to, from, next)=>{

@@ -32,6 +32,7 @@
     text-align: center;
     margin: 8px;
     max-width: 200px;
+    max-height: 400px;
   }
   
   .product-image {
