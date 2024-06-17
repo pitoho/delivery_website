@@ -14,5 +14,15 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  server: {
+    proxy: {
+        //  Настройка  прокси  для  запросов  к  API
+        '/api': {
+            target: 'http://localhost:3000', //  Замените  на  ваш  Go-сервер
+            changeOrigin: true,
+            rewrite: (path) => path.replace(/^\/api/, '')
+        }
+    }
+}
 })

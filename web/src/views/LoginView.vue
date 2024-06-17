@@ -1,72 +1,32 @@
-
-
-<!-- <script>
-export default{
-    data(){
-        return{
-            pass_code: ''
-        }
-    },
-    methods:{
-        auth(e){
-            if (e.key === 'Enter'){
-            localStorage.setItem('password', this.pass_code)
-            }
-        }
-    }
-}
-</script>
-
-<template>
-    <h2>Login</h2>
-    <input v-model="pass_code" @keydown="auth">
-    {{ pass_code }}
-    <h2>Password</h2>
-    <input v-model="pass_code" @keydown="auth">
-</template>
-
-<style>
-
-</style> -->
-
 <script>
 export default {
-  data() {
-    return {
-      username: '',
-      password: '',
-      error: ''
-    };
-  },
-  methods: {
+    methods: {
       async login() {
-      try {
-          const response = await fetch('https://dummyjson.com/auth/login', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                  username: this.username,
-                  password: this.password
-              })
+        try {
+          const response = await fetch('/login', { 
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              username: this.username,
+              password: this.password
+            })
           });
 
-          const data = await response.json();
-
           if (response.ok) {
-              localStorage.setItem('token', data.token);
-              // Redirect to Profile page
-              // this.$router.push('/private');
+            window.location.href = '/private'; 
           } else {
-              this.error = data.error || 'Invalid credentials';
+            const data = await response.json();
+            console.log(data)
+            this.error = data.error || 'Неправильный логин или пароль';
           }
 
-      } catch(error) {
+        } catch(error) {
           this.error = 'Произошла ошибка при отправке запроса';
           console.error(error);
+        }
       }
-  }
-  }
-};
+    }
+  };
 </script>
 
 <template>

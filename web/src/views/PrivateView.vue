@@ -1,39 +1,5 @@
 <script>
-export default {
-  data() {
-    return {
-      error: '',
-      user: null
-    };
-  },
-  mounted() {
-    // Check for token in localStorage
-    const token = localStorage.getItem('token');
-    if (!token) {
-      this.$router.push('/login');
-      return;
-    }
 
-    fetch('https://dummyjson.com/auth/me', {
-      method: 'GET',
-      headers: {
-        'Authorization': 'Bearer ' + token
-      }
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Authentication Problem');
-        }
-        return response.json();
-      })
-      .then(data => {
-        this.user = data;
-      })
-      .catch(error => {
-        this.error = error.message;
-      })
-  }
-};
 </script>
 
 <template>
