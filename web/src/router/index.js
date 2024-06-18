@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
+import RegistrateView from '../views/RegistrateView.vue'
 import PrivateView from '../views/PrivateView.vue'
 import PublicView from '../views/PublicView.vue'
 import FrontView from '../views/FrontView.vue'
 import FullMenu from '@/views/FullMenu.vue'
 import OrderView from '@/views/OrderView.vue'
+
 
 function checkAuth(){
   if (localStorage.getItem('token')){
@@ -37,6 +39,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView
+    },
+    {
+      path: '/registrate',
+      name: 'registrate',
+      component: RegistrateView
     },
     {
       path: '/front',

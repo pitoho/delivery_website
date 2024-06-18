@@ -3,10 +3,12 @@ import { ref } from 'vue'
 
 const username = ref('')
 const password = ref('')
+const secondPassword = ref('')
 const error = ref('')
 
 const login = async () => {
-  console.log('log in')
+  if (password.value === secondPassword.value){
+    console.log('log in')
   try {
     const response = await fetch('/login', { 
       method: 'POST',
@@ -31,6 +33,11 @@ const login = async () => {
     error.value = 'Произошла ошибка при отправке запроса';
     console.error(err);
   }
+  } else{
+    error.value = 'Пароль введен неправильно'
+    console.error(error);
+  }
+ 
 }
 </script>
 
@@ -38,14 +45,16 @@ const login = async () => {
     <div class="login-layout">
       <form @submit.prevent="login">
         <div class="form-head">
-            <h3 class="title">Authorization</h3><p v-if="error" class="title" style="color: red;">{{ error }}</p>
+            <h3 class="title">Registration</h3><p v-if="error" class="title" style="color: red;">{{ error }}</p>
         </div>
           <label for="username">Login</label>
           <input type="text" id="username" v-model="username" required>
           <label for="password">Password</label>
           <input type="password" id="password" v-model="password" required>
+          <label for="password">Repeat password</label>
+          <input type="password" id="password" v-model="secondPassword" required>
         <button type="submit">Submit</button>
-        <router-link to="/registrate">go registrate</router-link>
+        <router-link to="/login">go login</router-link>
       </form>
     </div>
   </template>
@@ -127,8 +136,8 @@ const login = async () => {
         align-self: center;
         background: rgb(255, 255, 255);
 
-        margin-top: 20px;
-        margin-bottom: 43px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     a{
       width: 100%;
