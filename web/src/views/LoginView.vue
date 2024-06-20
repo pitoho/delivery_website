@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios';
-import bcrypt from 'bcryptjs'; // Импортируйте bcrypt
 
 const email = ref('')
 const password = ref('')
@@ -9,19 +8,15 @@ const error = ref('')
 
 const login = async () => {
   try {
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password.value, saltRounds);
     const response = await axios.post('/login', {
       email: email.value,
-      password: hashedPassword
+      password: password.value
     }, {
       headers: { 'Content-Type': 'application/json' }
     });
 
-    console.log(response);
-    console.log(response.data);
-
     if (response.data.success) {
+      const data = await response.data;
       error.value = data.message || 'Успешный вход'
       setTimeout(() => {
         window.location.href = '/private'; 
