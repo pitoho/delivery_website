@@ -3,15 +3,15 @@ package main
 import (
 	"database/sql"
 	"encoding/json"
+	"io/ioutil"
 	"log"
 	"net/http"
-    "io/ioutil"
 	_ "github.com/lib/pq"
 )
 
 
 func checkUserCredentials(db *sql.DB, email string, password string) bool {
-    rows, err := db.Query("SELECT user_email, user_password FROM User_Data WHERE user_name = $1", email)
+    rows, err := db.Query("SELECT user_email, user_password FROM User_Data WHERE user_email = $1", email)
     if err != nil {
         if err == sql.ErrNoRows {
             return false
@@ -21,12 +21,14 @@ func checkUserCredentials(db *sql.DB, email string, password string) bool {
     defer rows.Close()
 
     if rows.Next() { 
-        user := new(User)
-        err := rows.Scan(&user.Email, &user.Password)
+        var userdb User
+        err := rows.Scan(&userdb.Email, &userdb.Password)
         if err != nil {
             log.Fatal(err)
         }
-        return password == user.Password 
+        
+        pass:= MD5(password)
+        return pass == userdb.Password
     }
 
     return false 
@@ -54,7 +56,7 @@ func loginHandler(db *sql.DB) func(http.ResponseWriter, *http.Request) {
                 return
             }
 
-            if checkUserCredentials(db, user.Username, user.Password) {
+            if checkUserCredentials(db, user.Email, user.Password) {
                 response := LoginResponse{Success: true, Message: "Успешная аутентификация"}
                 json.NewEncoder(w).Encode(response)
             } else {
