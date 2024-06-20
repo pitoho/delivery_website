@@ -12,7 +12,7 @@ import (
 
 
 func main() {
-    connStr := "host=localhost port=5432 user=postgres password=Vk691109 dbname=delivery_db sslmode=disable"
+    connStr := "host=localhost port=5432 user=postgres password=mother545 dbname=delivery_db sslmode=disable"
 
     db, err := sql.Open("postgres", connStr)
     if err != nil {
@@ -26,8 +26,10 @@ func main() {
         log.Fatalf("Error connecting to database: %v", err)
     }
 
-    // fs := http.FileServer(http.Dir("../web/dist"))
-	http.Handle("/", http.HandlerFunc(getDishes(db)))
+    fs := http.FileServer(http.Dir("../web/dist"))
+	http.Handle("/", fs )
+
+    http.Handle("/dishes", http.HandlerFunc(getDishes(db)))
 
 	// http.Handle("/private", http.HandlerFunc(private()))
     // // http.Handle("/#procrast", http.HandlerFunc(getDishes(db)))
@@ -68,21 +70,10 @@ func getDishes(db *sql.DB) func(http.ResponseWriter, *http.Request) {
             http.Error(w, fmt.Sprintf("Ошибка преобразования в JSON: %v", err), http.StatusInternalServerError)
             return
         }
-		cookie := &http.Cookie{
-            Name:     "dishes",
-            Value:    string(jsonDishes),
-            Path:     "/",
-            HttpOnly: true,
-            MaxAge:   60 * 60 * 24, 
-            Secure:   false,
-        }
-		http.SetCookie(w, cookie)
-        w.Header().Set("Content-Type", "text/html")
-
-        http.ServeFile(w, r, "C:/0_DELIVERY_WITH_BACKEND_4/delivery_website/web/index.html") 
+		w.Write(jsonDishes)
+        w.Header().Set("Content-Type", "application/json")
     }
 }
-
 
 type Dish struct {
     ID          int    `json:"id"`
