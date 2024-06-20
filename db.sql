@@ -98,3 +98,23 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION get_dish_with_tags()
+RETURNS TABLE (
+  id_dish INT,
+  dish_name VARCHAR(255),
+  dish_image_path VARCHAR(255),
+  price INT,
+  tag VARCHAR(255)
+) AS $$
+BEGIN
+  RETURN QUERY 
+  SELECT 
+    ds.id_dish,
+    ds.dish_name,
+    ds.dish_image_path,
+    ds.price,
+    t.tag
+  FROM Dish_Storage ds
+  JOIN Tags t ON ds.tags_id = t.id_tag;
+END;
+$$ LANGUAGE plpgsql;

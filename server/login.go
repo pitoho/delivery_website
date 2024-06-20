@@ -1,59 +1,67 @@
 package main
 
 import (
-    "database/sql"
-    "net/http"
-    "encoding/json"
-    _ "github.com/lib/pq" 
+	"database/sql"
+	"encoding/json"
+	"log"
+	"net/http"
+    "io/ioutil"
+	_ "github.com/lib/pq"
 )
 
 
-func checkUserCredentials(db *sql.DB, username, password string) bool {
-
-    var dbUsername, dbPassword string
-
-    query := "SELECT user_name, user_password FROM User_Data WHERE user_name = $1"
-    err := db.QueryRow(query, username).Scan(&dbUsername, &dbPassword)
+func checkUserCredentials(db *sql.DB, email string, password string) bool {
+    rows, err := db.Query("SELECT user_email, user_password FROM User_Data WHERE user_name = $1", email)
     if err != nil {
         if err == sql.ErrNoRows {
             return false
         }
         panic(err)
     }
+    defer rows.Close()
 
-    return password == dbPassword
+    if rows.Next() { 
+        user := new(User)
+        err := rows.Scan(&user.Email, &user.Password)
+        if err != nil {
+            log.Fatal(err)
+        }
+        return password == user.Password 
+    }
+
+    return false 
 }
 
 func loginHandler(db *sql.DB) func(http.ResponseWriter, *http.Request) {
 
-    // fs := http.FileServer(http.Dir("../web/dist"))
-	// http.Handle("/", fs)
-
     return func(w http.ResponseWriter, r *http.Request) {
-        if r.Method != "POST" {
-            http.Error(w, "Метод не поддерживается", http.StatusMethodNotAllowed)
+        if r.Method == "GET" {
+            http.ServeFile(w, r, "../web/dist/index.html")
+        }else if r.Method != "POST" {
+            http.Error(w, "Метод не поддерживается", http.StatusBadRequest)
             return
-        }
+        }else{
+            body, err := ioutil.ReadAll(r.Body)
+            if err != nil {
+                http.Error(w, "Ошибка чтения тела запроса", http.StatusBadRequest)
+                return
+            }
 
-        decoder := json.NewDecoder(r.Body)
-        var credentials struct {
-            Username string `json:"user_name"`
-            Password string `json:"user_password"`
-        }
-        err := decoder.Decode(&credentials)
-        if err != nil {
-            http.Error(w, "Неверный формат данных", http.StatusBadRequest)
-            return
-        }
+            var user User 
+            err = json.Unmarshal(body, &user)
+            if err != nil {
+                http.Error(w, "Ошибка разбора JSON", http.StatusBadRequest)
+                return
+            }
 
-        if checkUserCredentials(db, credentials.Username, credentials.Password) {
-            response := LoginResponse{Success: true, Message: "Успешная аутентификация"}
-            json.NewEncoder(w).Encode(response)
-            http.Redirect(w, r, "/private", http.StatusFound)
-            return
-        } else {
-            response := LoginResponse{Success: false, Message: "Неверное имя пользователя или пароль"}
-            json.NewEncoder(w).Encode(response)
-        }
+            if checkUserCredentials(db, user.Username, user.Password) {
+                response := LoginResponse{Success: true, Message: "Успешная аутентификация"}
+                json.NewEncoder(w).Encode(response)
+            } else {
+                response := LoginResponse{Success: false, Message: "Неверное имя пользователя или пароль"}
+                json.NewEncoder(w).Encode(response)
+            }
+    
+        }  
     }
 }

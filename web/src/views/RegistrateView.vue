@@ -1,64 +1,83 @@
 <script setup>
 import { ref } from 'vue'
+import axios from 'axios';
+import bcrypt from 'bcryptjs'; 
 
 const username = ref('')
+const usersurname = ref('')
+const phonenum = ref('')
+const email = ref('')
 const password = ref('')
-const secondPassword = ref('')
 const error = ref('')
 
-const login = async () => {
-  if (password.value === secondPassword.value){
-    console.log('log in')
+const register = async () => {
   try {
-    const response = await fetch('/login', { 
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: username.value,
-        password: password.value
-      })
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password.value, saltRounds);
+    console.log('Отправляемые данные:', {
+      username: username.value,
+      usersurname: usersurname.value,
+      phonenum: phonenum.value,
+      email: email.value,
+      password: hashedPassword
     });
-    console.log(response)
-    console.log(username.value)
-    console.log(password.value)
-    if (response.ok) {
-      window.location.href = '/private'; 
+
+    const response = await axios.post('/registrate', 
+      { 
+        username: username.value,
+        usersurname: usersurname.value,
+        phonenum: phonenum.value,
+        email: email.value,
+        password: hashedPassword
+      },
+      {
+        headers: { 'Content-Type': 'application/json' } 
+      }
+    );
+
+    // Вывод ответа в консоль для отладки
+    console.log('Ответ сервера:', response); 
+    console.log('Данные ответа:', response.data); 
+
+    if (response.data.success) {
+      error.value = response.data.message || 'Успешная регистрация';
+      setTimeout(() => {
+        window.location.href = '/login'; 
+      }, 3000);
     } else {
-      const data = await response.json();
-      console.log(data)
-      error.value = data.error || 'Неправильный логин или пароль';
+      error.value = response.data.message || 'Ошибка регистрации';
     }
 
   } catch (err) {
     error.value = 'Произошла ошибка при отправке запроса';
     console.error(err);
   }
-  } else{
-    error.value = 'Пароль введен неправильно'
-    console.error(error);
-  }
- 
 }
 </script>
 
 <template>
     <div class="login-layout">
-      <form @submit.prevent="login">
+      <form @submit.prevent="register">
         <div class="form-head">
             <h3 class="title">Registration</h3><p v-if="error" class="title" style="color: red;">{{ error }}</p>
         </div>
-          <label for="username">Login</label>
+          <label for="username">Name</label>
           <input type="text" id="username" v-model="username" required>
+          <label for="usersurname">Surname</label>
+          <input type="text" id="usersurname" v-model="usersurname" required>
+          <label for="phonenum">Phone Number</label>
+          <input type="text" id="phonenum" v-model="phonenum" required>
+          <label for="email">Email</label>
+          <input type="text" id="email" v-model="email" required>
           <label for="password">Password</label>
           <input type="password" id="password" v-model="password" required>
-          <label for="password">Repeat password</label>
-          <input type="password" id="password" v-model="secondPassword" required>
         <button type="submit">Submit</button>
         <router-link to="/login">go login</router-link>
       </form>
     </div>
   </template>
 
+  
   <style scoped>
   .login-layout{
     display: flex;

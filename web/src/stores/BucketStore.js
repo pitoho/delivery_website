@@ -7,84 +7,84 @@ export const useBucketStore = defineStore('bucket', () => {
     {
         id_dish: 1,
         dish_name: 'Food for real 1',
-        dish_image_path: 'src/assets/food.png',
+        dish_image_path: '../src/assets/food.png',
         price: 420, 
         tags_id: 1
     },
     {
         id_dish: 2,
         dish_name: 'Food for real 2',
-        dish_image_path: 'src/assets/food.png',
+        dish_image_path: '../src/assets/food.png',
         price: 420, 
         tags_id: 1
     },
     {
         id_dish: 3,
         dish_name: 'Food for real 3',
-        dish_image_path: 'src/assets/food.png',
+        dish_image_path: '../src/assets/food.png',
         price: 420, 
         tags_id: 1
     },
     {
         id_dish: 4,
         dish_name: 'Food for real 4',
-        dish_image_path: 'src/assets/food.png',
+        dish_image_path: '../src/assets/food.png',
         price: 420, 
         tags_id: 1
     }, 
     {
         id_dish: 5,
         dish_name: 'water for real 1',
-        dish_image_path: 'src/assets/water.png',
+        dish_image_path: '../src/assets/water.png',
         price: 420, 
         tags_id: 2
     },
     {
         id_dish: 6,
         dish_name: 'water for real 2',
-        dish_image_path: 'src/assets/water.png',
+        dish_image_path: '../src/assets/water.png',
         price: 420, 
         tags_id: 2
     },
     {
         id_dish: 7,
         dish_name: 'water for real 3',
-        dish_image_path: 'src/assets/water.png',
+        dish_image_path: '../src/assets/water.png',
         price: 420, 
         tags_id: 2
     },
     {
         id_dish: 8,
         dish_name: 'water for real 4',
-        dish_image_path: 'src/assets/water.png',
+        dish_image_path: '../src/assets/water.png',
         price: 420, 
         tags_id: 2
     }, 
     {
         id_dish: 9,
         dish_name: 'fries for real 1',
-        dish_image_path: 'src/assets/fries.jpg',
+        dish_image_path: '../src/assets/fries.jpg',
         price: 420, 
         tags_id: 3
     },
     {
         id_dish: 10,
         dish_name: 'fries for real 2',
-        dish_image_path: 'src/assets/fries.jpg',
+        dish_image_path: '../src/assets/fries.jpg',
         price: 420, 
         tags_id: 3
     },
     {
         id_dish: 11,
         dish_name: 'fries for real 3',
-        dish_image_path: 'src/assets/fries.jpg',
+        dish_image_path: '../src/assets/fries.jpg',
         price: 420, 
         tags_id: 3
     },
     {
         id_dish: 12, 
         dish_name: 'fries for real 4',
-        dish_image_path: 'src/assets/fries.jpg',
+        dish_image_path: '../src/assets/fries.jpg',
         price: 420, 
         tags_id: 3
     }, 

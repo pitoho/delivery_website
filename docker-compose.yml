@@ -12,12 +12,12 @@ services:
       POSTGRES_PASSWORD: babymonster
     volumes:
       - ./data:/var/lib/postgresql/data
-    # command: docker exec -it delivery_db psql -U postgres -d delivery_db
+    #   - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+    # command: ["sh", "-c", "chown postgres:postgres /docker-entrypoint-initdb.d/db.sql"] 
 
   golang_app:
     image: golang:1.21
     container_name: golang_app_container
     volumes:
-      - ./server/go_server:/server/go_server
-    working_dir: /server/go_server
-    # command: main.exe
+      - ./server:/server
+    working_dir: /server

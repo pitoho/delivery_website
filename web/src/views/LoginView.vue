@@ -1,30 +1,34 @@
 <script setup>
 import { ref } from 'vue'
+import axios from 'axios';
+import bcrypt from 'bcryptjs'; // Импортируйте bcrypt
 
-const username = ref('')
+const email = ref('')
 const password = ref('')
 const error = ref('')
 
 const login = async () => {
-  console.log('log in')
   try {
-    const response = await fetch('/login', { 
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: username.value,
-        password: password.value
-      })
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password.value, saltRounds);
+    const response = await axios.post('/login', {
+      email: email.value,
+      password: hashedPassword
+    }, {
+      headers: { 'Content-Type': 'application/json' }
     });
-    console.log(response)
-    console.log(username.value)
-    console.log(password.value)
-    if (response.ok) {
-      window.location.href = '/private'; 
+
+    console.log(response);
+    console.log(response.data);
+
+    if (response.data.success) {
+      error.value = data.message || 'Успешный вход'
+      setTimeout(() => {
+        window.location.href = '/private'; 
+      }, 3000);
     } else {
-      const data = await response.json();
-      console.log(data)
-      error.value = data.error || 'Неправильный логин или пароль';
+      const data = await response.data;
+      error.value = data.message || 'Неверный логин или пароль';
     }
 
   } catch (err) {
@@ -40,8 +44,8 @@ const login = async () => {
         <div class="form-head">
             <h3 class="title">Authorization</h3><p v-if="error" class="title" style="color: red;">{{ error }}</p>
         </div>
-          <label for="username">Login</label>
-          <input type="text" id="username" v-model="username" required>
+          <label for="email">Email</label>
+          <input type="text" id="email" v-model="email" required>
           <label for="password">Password</label>
           <input type="password" id="password" v-model="password" required>
         <button type="submit">Submit</button>
