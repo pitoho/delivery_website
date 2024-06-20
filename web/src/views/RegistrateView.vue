@@ -14,6 +14,7 @@ const register = async () => {
   try {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password.value, saltRounds);
+    console.log(username.value)
     console.log('Отправляемые данные:', {
       username: username.value,
       usersurname: usersurname.value,
