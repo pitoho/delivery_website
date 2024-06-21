@@ -9,14 +9,25 @@ import FullMenu from '@/views/FullMenu.vue'
 import OrderView from '@/views/OrderView.vue'
 
 
-function checkAuth(){
-  if (localStorage.getItem('token')){
-    return true
-  } else{
-    return false
+function checkAuth() {
+  const token = getCookie('token');
+  if (token) {
+    return true;
+  } else {
+    return false;
   }
 }
 
+function getCookie(name) {
+  const cookies = document.cookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();    
+    if (cookie.indexOf(name + '=') === 0) {
+      return cookie.substring(name.length + 1);
+    }
+  }
+  return null;
+}
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -57,7 +68,6 @@ const router = createRouter({
     }
   ],
   scrollBehavior() {
-    // Всегда прокручивает к началу страницы
     return { top: 0 };
   }
 })
