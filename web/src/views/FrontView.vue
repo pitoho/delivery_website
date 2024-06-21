@@ -86,11 +86,10 @@ function addToOrder(tag){
 							Картофель фри, гренки и тд
 						</p>
 						<div class="destinations__info-wrap">
-							<p class="destinations__price">
+							<a href="#story" @click="addToOrder('garnir_fried')" class="destinations__btn">
+								<p class="destinations__price">
 								О да!
-							</p>
-							<a href="#story" @click="addToOrder(3)" class="destinations__btn">
-
+								</p>
 							</a>
 						</div>
 					</div>
@@ -107,11 +106,10 @@ function addToOrder(tag){
 							Пюре или макарошки
 						</p>
 						<div class="destinations__info-wrap">
-							<p class="destinations__price">
+							<a href="#story" @click="addToOrder('garnir_boiled')" class="destinations__btn">
+								<p class="destinations__price">
 								Мммм...
 							</p>
-							<a href="#story" @click="addToOrder(3)" class="destinations__btn">
-
 							</a>
 						</div>
 					</div>
@@ -128,10 +126,10 @@ function addToOrder(tag){
 							Кому какое дело?
 						</p>
 						<div class="destinations__info-wrap">
-							<p class="destinations__price">
+							<a href="#story" class="destinations__btn">
+								<p class="destinations__price">
 								Дальше
 							</p>
-							<a href="#story" class="destinations__btn">
 							</a>
 						</div>
 					</div>
@@ -156,15 +154,15 @@ function addToOrder(tag){
 				<ul class="story-content__list">
 					<li class="story-content__item item1">
 						<b class ="bold">Рыба/Море</b><br /> От лосося до мидии
-						<a href="#final" class="arrow-down arr1" @click="addToOrder(1)"></a>
+						<a href="#final" class="arrow-down arr1" @click="addToOrder('base_sea')"></a>
 					</li>
 					<li class="story-content__item item2">
 						<b class ="bold">Мясо/Птица</b><br />Хрустящая курочка или стейк?
-						<a href="#final" class="arrow-down arr2" @click="addToOrder(1)"></a>
+						<a href="#final" class="arrow-down arr2" @click="addToOrder('base_meat')"></a>
 					</li>
 					<li class="story-content__item item3">
 						<b class ="bold">Веган</b><br /> Салатикииии
-						<a href="#final" class="arrow-down arr3" @click="addToOrder(1)"></a>
+						<a href="#final" class="arrow-down arr3" @click="addToOrder('base_vegan')"></a>
 					</li>
 				</ul>
 				<div class="PictureStory" id="PictureStory">
@@ -187,9 +185,9 @@ function addToOrder(tag){
 		<div class = "wrapper">
 			<!-- <div class = "card_menu"></div> -->
 			<div class = "card_menu card1"><a href = "#order" class ="wraptext">Не буду</a></div>
-			<div class = "card_menu card2"><a href = "#order" class ="wraptext" @click="addToOrder(2)">Чай</a></div>
-			<div class = "card_menu big card3"><a href = "#order" class ="wraptext" @click="addToOrder(2)">Алкоголь</a></div>
-			<div class = "card_menu med card4"><a href = "#order" class ="wraptext" @click="addToOrder(2)">Газировка</a></div>
+			<div class = "card_menu card2"><a href = "#order" class ="wraptext" @click="addToOrder('drink_tea')">Чай</a></div>
+			<div class = "card_menu big card3"><a href = "#order" class ="wraptext" @click="addToOrder('drink_alc')">Алкоголь</a></div>
+			<div class = "card_menu med card4"><a href = "#order" class ="wraptext" @click="addToOrder('drink_gas')">Газировка</a></div>
 		</div>
 	</div>
 </div>
@@ -409,14 +407,16 @@ a {
 }
 
 .arrow-down {
-	background: url(../img/arrow-down.svg) no-repeat bottom;
-    width: 50px;
-    height: 50px;
+	background: url(https://www.pngall.com/wp-content/uploads/14/Down-Arrow-PNG-Images.png) center;
+	background-size: contain;
     display: block;
     margin: 239px auto 0;
     opacity: 0.5;
     transition: all 0.5s ease;
-
+	z-index: 2;
+	width: 100px;
+	height: 100px;
+	object-fit: contain;
 }
 
 .arrow-down:hover {
@@ -509,7 +509,7 @@ height: auto;
 
 .destinations__btn {
 	background: url('../img/arrow-next.svg');
-	width: 25px;
+	width: 100px;
 	height: 21px;
 	display: block;
 	opacity: 0;

@@ -93,7 +93,7 @@ const register = async () => {
     margin-right: auto;
 
     width: 309px;
-    height: 277px;
+    height: fit-content;
 
     background: rgb(255, 255, 255);
 

@@ -67,9 +67,9 @@ const router = createRouter({
       component: OrderView
     }
   ],
-  scrollBehavior() {
-    return { top: 0 };
-  }
+  // scrollBehavior() {
+  //   return { top: 0 };
+  // }
 })
 
 router.beforeEach((to, from, next)=>{

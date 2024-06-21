@@ -1,5 +1,6 @@
 <template>
-    <div class="product-card">
+    <div></div>
+    <div class="product-card" @dblclick="bucketStore.deleteItem(product.id_dish)">
       <img :src="product.dish_image_path" :alt="product.dish_name" class="product-image" />
       <div class="price-filed">
         <h2>{{ product.dish_name }}</h2>
@@ -10,12 +11,22 @@
   </template>
   
   <script>
+  import { useBucketStore } from '../stores/BucketStore';
   export default {
     name: 'ProductCard',
     props: {
       product: {
         type: Object,
         required: true
+      }
+    },
+    setup(){
+      const bucketStore = useBucketStore()
+      function deleteItem(id){
+        bucketStore.deleteItem(id)
+      }
+      return{
+        deleteItem, bucketStore
       }
     }
   }
@@ -32,7 +43,7 @@
     text-align: center;
     margin: 8px;
     max-width: 200px;
-    max-height: 400px;
+    height: fit-content;
   }
   
   .product-image {

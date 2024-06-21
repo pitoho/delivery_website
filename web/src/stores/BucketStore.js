@@ -3,93 +3,24 @@ import { ref } from 'vue'
 
 export const useBucketStore = defineStore('bucket', () => {
 
-  let bucket = ref([
-    {
-        id_dish: 1,
-        dish_name: 'Food for real 1',
-        dish_image_path: '../src/assets/food.png',
-        price: 420, 
-        tags_id: 1
-    },
-    {
-        id_dish: 2,
-        dish_name: 'Food for real 2',
-        dish_image_path: '../src/assets/food.png',
-        price: 420, 
-        tags_id: 1
-    },
-    {
-        id_dish: 3,
-        dish_name: 'Food for real 3',
-        dish_image_path: '../src/assets/food.png',
-        price: 420, 
-        tags_id: 1
-    },
-    {
-        id_dish: 4,
-        dish_name: 'Food for real 4',
-        dish_image_path: '../src/assets/food.png',
-        price: 420, 
-        tags_id: 1
-    }, 
-    {
-        id_dish: 5,
-        dish_name: 'water for real 1',
-        dish_image_path: '../src/assets/water.png',
-        price: 420, 
-        tags_id: 2
-    },
-    {
-        id_dish: 6,
-        dish_name: 'water for real 2',
-        dish_image_path: '../src/assets/water.png',
-        price: 420, 
-        tags_id: 2
-    },
-    {
-        id_dish: 7,
-        dish_name: 'water for real 3',
-        dish_image_path: '../src/assets/water.png',
-        price: 420, 
-        tags_id: 2
-    },
-    {
-        id_dish: 8,
-        dish_name: 'water for real 4',
-        dish_image_path: '../src/assets/water.png',
-        price: 420, 
-        tags_id: 2
-    }, 
-    {
-        id_dish: 9,
-        dish_name: 'fries for real 1',
-        dish_image_path: '../src/assets/fries.jpg',
-        price: 420, 
-        tags_id: 3
-    },
-    {
-        id_dish: 10,
-        dish_name: 'fries for real 2',
-        dish_image_path: '../src/assets/fries.jpg',
-        price: 420, 
-        tags_id: 3
-    },
-    {
-        id_dish: 11,
-        dish_name: 'fries for real 3',
-        dish_image_path: '../src/assets/fries.jpg',
-        price: 420, 
-        tags_id: 3
-    },
-    {
-        id_dish: 12, 
-        dish_name: 'fries for real 4',
-        dish_image_path: '../src/assets/fries.jpg',
-        price: 420, 
-        tags_id: 3
-    }, 
-   ])
+    fetch('http://localhost:3000/dishes')
+    .then(res => res.json())
+    .then(json => {
+        json.map(elem => {
+            let res = {
+                id_dish: elem.id,
+                dish_name: elem.dish_name,
+                dish_image_path: elem.dish_image_path,
+                price: elem.price,
+                tags_id: elem.tags_id
+            }
+            bucket.value.push(res)
+        })
+    })  
+
+  let bucket = ref([])
    let order = ref([])
+   let orderCost = ref(0)
    const randomFood = localStorage.getItem('randomFood');
    if (randomFood) {
      order.value = JSON.parse(randomFood);
@@ -101,6 +32,7 @@ export const useBucketStore = defineStore('bucket', () => {
    bucket.value.forEach(element => {
        totPrice.value+=element.lastPrice
    });
+   reCostOrder()
 
 
    function addToBucket(id, title, lastPrice, oldPrice, image, count){
@@ -142,20 +74,11 @@ export const useBucketStore = defineStore('bucket', () => {
 
 
    function deleteItem(id){
-       bucket.value = bucket.value.filter((item)=> +item.id != id)
-       totPrice.value=0
-       bucket.value.forEach(element => {
-       totPrice.value+=element.lastPrice
-       // BuckExist.value = BuckExist.value - 1
-       });
-       buckLength.value--
-       localStorage.randomFood = JSON.stringify(bucket.value)
-       console.log(id)
-       console.log(buckLength.value)
-       console.log('length ' + BuckExist.value)
-
-
-       
+    order.value = order.value.filter(e => e.id_dish != id)
+    console.log(id)
+    console.log(order.value)
+    localStorage.randomFood = JSON.stringify(order.value)
+    reCostOrder()
    }
 
    function addRandomItem(tag){
@@ -164,8 +87,16 @@ export const useBucketStore = defineStore('bucket', () => {
     console.log('Added product with tag_id ' + tag + ' and id of product ' + item.id_dish)
     order.value.push(item)
     localStorage.randomFood = JSON.stringify(order.value)
+    reCostOrder()
     }
 
+    function reCostOrder(){
+        orderCost.value = 0
+        for (let item of order.value){
+            console.log(item)
+            orderCost.value += item.price
+        }
+    }
 
-  return { bucket, buckLength, BuckExist, totPrice, order, deleteItem, addToBucket, addRandomItem }
+  return { bucket, buckLength, BuckExist, totPrice, order, deleteItem, addToBucket, addRandomItem, orderCost, reCostOrder }
 })
