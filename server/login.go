@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
+    "fmt"
 	"net/http"
 	_ "github.com/lib/pq"
 )
@@ -57,7 +58,14 @@ func loginHandler(db *sql.DB) func(http.ResponseWriter, *http.Request) {
             }
 
             if checkUserCredentials(db, user.Email, user.Password) {
-                w.Header().Set("Set-Cookie", "token="+ user.Email +"; Path=/; HttpOnly: true") 
+                w.Header().Set("Set-Cookie", "token="+ MD5(user.Email) +"; Path=/; HttpOnly: true")
+                
+                token := MD5(user.Email)
+                _, err = db.Exec("CALL check_token_and_create_session($1)", token)
+                if err != nil {
+                    fmt.Println("Ошибка при вызове процедуры:", err)
+                } 
+
                 response := LoginResponse{Success: true, Message: "Успешная аутентификация"}
                 json.NewEncoder(w).Encode(response)
             } else {

@@ -2,8 +2,11 @@
 import { useBucketStore } from '@/stores/BucketStore';
 import ProductItem from '@/components/ProductItem.vue';
 import { ref, watch } from 'vue';
+import axios from 'axios';
+
 const bucketStore = useBucketStore()
 
+const error = ref('')
 let street = ref('')
 let house = ref()
 let corpus_building = ref()
@@ -14,17 +17,38 @@ watch(()=>bucketStore.orderCost,
 				orderCost.value = newPrice
                 console.log(orderCost.value)
             })
-</script>
 
+
+const order = async () => {
+  	try {
+    	const response = await axios.post('/order', {
+			orderedFood: localStorage.getItem('randomFood'),
+      		street: street.value,
+      		house: house.value,
+	  		corpus_building: corpus_building.value,
+	  		flat: flat.value,
+	  		totalPrice: orderCost.value
+    	}, {
+      		headers: { 'Content-Type': 'application/json' }
+    	});
+		if (response.data.success) {
+      		const data = await response.data;
+      		error.value = data.message || 'Успешный вход'
+        	window.location.href = '/'; 
+    	}
+
+  	} catch (err) {
+    	error.value = 'Произошла ошибка при отправке запроса';
+    	console.error(err);
+  	}
+}
+</script>
+ 
 <template >
- <section id="order" class="story">
-			<div class="container">
-				<h1 class="story__title">
-					Основываясь на ваших предпочтениях:
-				</h1>
-				<p class="offer__intro">
-					(дважды кликните по товару, если он Вам не понравился)
-				</p>
+<section id="order" class="story">
+		<div class="container">
+			<h1 class="story__title">Основываясь на ваших предпочтениях:</h1>
+			<p class="offer__intro">(дважды кликните по товару, если он Вам не понравился)</p>
 		</div>
 		<div class="story-content container container_full-height" style="flex-direction: column;" id ="story-content">
 			<div class="story-content container container_full-height" style="padding: 0px;" id ="story-content">
@@ -32,23 +56,22 @@ watch(()=>bucketStore.orderCost,
 			</div>
 				<div class="adressInputText" style="width: 100%; padding: 40px;">Сумма заказа:   <b style="font-size: 24px;">{{  orderCost }} Р</b></div>
 		</div>
-		<div class="adressField">
-					<label for="email" class="adressInputText">Выберите адрес для доставки:</label>
-		</div>
-		<div class="adressField">
-					<label for="email" class="adressInputText">Улица:</label>
-					<input style="width: 300px;" class="adressInput" type="text" id="email" v-model="street" required>
-					<label for="email" class="adressInputText">Дом:</label>
-					<input style="width: 100px;" class="adressInput" type='number' id="email" v-model="house" required>
-					<label for="email" class="adressInputText">Корпус:</label>
-					<input style="width: 100px;" class="adressInput" type='number' id="email" v-model="corpus_building">
-					<label for="email" class="adressInputText">Квартира:</label>
-					<input style="width: 100px;" class="adressInput" type='number' id="email" v-model="flat" required>
-		</div>
-
-		<button class="offer__btn btn">
-			Заказать
-		</button>
+		<form @submit.prevent="order">
+			<div class="adressField">
+				<label for="email" class="adressInputText">Выберите адрес для доставки:</label>
+			</div>
+			<div class="adressField">
+				<label for="email" class="adressInputText">Улица:</label>
+				<input style="width: 300px;" class="adressInput" type="text" id="email" v-model="street" required>
+				<label for="email" class="adressInputText">Дом:</label>
+				<input style="width: 100px;" class="adressInput" type='number' id="email" v-model="house" required>
+				<label for="email" class="adressInputText">Корпус:</label>
+				<input style="width: 100px;" class="adressInput" type='number' id="email" v-model="corpus_building">
+				<label for="email" class="adressInputText">Квартира:</label>
+				<input style="width: 100px;" class="adressInput" type='number' id="email" v-model="flat" required>
+			</div>
+			<button class="offer__btn btn">Заказать</button>
+		</form>
 </section>
 </template>
 

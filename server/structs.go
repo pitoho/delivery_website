@@ -11,14 +11,6 @@ type User struct {
     Password     string `json:"password"`
 }
 
-type Dish struct {
-    ID          int    `json:"id"`
-    DishName    string `json:"dish_name"`
-    ImagePath   string `json:"dish_image_path"`
-    Price       int    `json:"price"`
-    TagsID      int    `json:"tags_id"`
-}
-
 type DishWithTag struct {
     ID          int    `json:"id"`
     DishName    string `json:"dish_name"`
@@ -26,7 +18,14 @@ type DishWithTag struct {
     Price       int    `json:"price"`
     Tags        string `json:"tags_id"`
 }
-
+type OrderInfo struct {
+    Dishes      string  `json:"orderedFood"`
+    Street      string  `json:"street"`
+    House       int     `json:"house"`
+    Corpus      int     `json:"corpus_building"`
+    Flat        int     `json:"flat"`
+    TotalPrice  int     `json:"totalPrice"`
+}
 type LoginResponse struct {
     Success bool   `json:"success"`
     Message string `json:"message"`
@@ -34,4 +33,12 @@ type LoginResponse struct {
 type MyCustomClaims struct {
     Email string `json:"email"`
     jwt.StandardClaims
+}
+
+type Dish struct {
+    IDDish          int    `json:"id_dish"`
+    DishName        string `json:"dish_name"`
+    DishImagePath   string `json:"dish_image_path"`
+    Price           int    `json:"price"`
+    TagsID          string `json:"tags_id"`
 }
