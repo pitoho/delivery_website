@@ -1,5 +1,8 @@
 package main
 
+import (
+    "github.com/dgrijalva/jwt-go"
+)
 type User struct {
     Username     string `json:"username"`
     Usersurname  string `json:"usersurname"`
@@ -27,4 +30,8 @@ type DishWithTag struct {
 type LoginResponse struct {
     Success bool   `json:"success"`
     Message string `json:"message"`
+}
+type MyCustomClaims struct {
+    Email string `json:"email"`
+    jwt.StandardClaims
 }

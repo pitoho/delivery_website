@@ -57,6 +57,7 @@ func loginHandler(db *sql.DB) func(http.ResponseWriter, *http.Request) {
             }
 
             if checkUserCredentials(db, user.Email, user.Password) {
+                w.Header().Set("Set-Cookie", "token="+ user.Email +"; Path=/; HttpOnly: true") 
                 response := LoginResponse{Success: true, Message: "Успешная аутентификация"}
                 json.NewEncoder(w).Encode(response)
             } else {
