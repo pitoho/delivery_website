@@ -26,6 +26,12 @@ type OrderInfo struct {
     Flat        int     `json:"flat"`
     TotalPrice  int     `json:"totalPrice"`
 }
+type Order struct {
+    IDOrder             int       `json:"id_order"`
+    OrderTime           string    `json:"order_time"`
+    TotalPrice          int       `json:"total_price"`
+    OrderStatus         string    `json:"order_status"`
+}
 type LoginResponse struct {
     Success bool   `json:"success"`
     Message string `json:"message"`

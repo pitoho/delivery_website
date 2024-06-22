@@ -11,23 +11,12 @@ import OrderCompleteView from '@/views/OrderCompleteView.vue'
 
 
 function checkAuth() {
-  const token = getCookie('token');
+  const token = bucketStore.getCookie('token');
   if (token) {
     return true;
   } else {
     return false;
   }
-}
-
-function getCookie(name) {
-  const cookies = document.cookie.split(';');
-  for (let i = 0; i < cookies.length; i++) {
-    const cookie = cookies[i].trim();    
-    if (cookie.indexOf(name + '=') === 0) {
-      return cookie.substring(name.length + 1);
-    }
-  }
-  return null;
 }
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

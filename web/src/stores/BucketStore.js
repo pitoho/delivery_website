@@ -109,9 +109,7 @@ export const useBucketStore = defineStore('bucket', () => {
         for (let i = 0; i < cookies.length; i++) {
           const cookie = cookies[i].trim();    
           if (cookie.indexOf(name + '=') === 0) {
-            let cookieMass = []
-            cookieMass = cookie.substring(name.length + 1).split(',');
-            return cookieMass
+            return cookie.substring(name.length + 1);
           }
         }
         return null;

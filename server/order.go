@@ -55,7 +55,7 @@ func orderHandler(db *sql.DB) func(http.ResponseWriter, *http.Request) {
 				panic(err)
     		}
 
-			err = db.QueryRow("CALL add_order($1, $2, $3, $4, $5)", userId, existingID, order.TotalPrice, "Ожидает оплату", &newOrderID).Scan(&newOrderID)
+			err = db.QueryRow("CALL add_order($1, $2, $3, $4, $5)", userId, existingID, order.TotalPrice, "Создан", &newOrderID).Scan(&newOrderID)
     		if err != nil {
         		panic(err)
     		}
@@ -66,13 +66,12 @@ func orderHandler(db *sql.DB) func(http.ResponseWriter, *http.Request) {
 				_, err = db.Exec("CALL add_order_dish($1, $2)", newOrderID, dish.IDDish)
     			if err != nil { 
 					panic(err)
-    			}else{
-					response := LoginResponse{Success: true, Message: "Заказ успешно создан"}
-					json.NewEncoder(w).Encode(response)
-				}
+    			}
 			}
-
+			response := LoginResponse{Success: true, Message: "Заказ успешно создан"}
+			json.NewEncoder(w).Encode(response)
     
         }  
     }
 }
+

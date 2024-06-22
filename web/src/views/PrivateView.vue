@@ -4,10 +4,13 @@ import { onMounted, ref } from 'vue';
 
 const bucketStore = useBucketStore()
 let user = ref([])
+let orders = ref([])
 
 onMounted(
-    user.value = bucketStore.getCookie("user"),
-    console.log(user.value)
+    user.value = bucketStore.getCookie("user").split(','),
+    // console.log(user.value),
+    orders.value = JSON.parse(bucketStore.getCookie("orders")),
+    // console.log(orders.value)
 )
 </script>
 
