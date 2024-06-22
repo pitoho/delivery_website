@@ -7,6 +7,7 @@ import PublicView from '../views/PublicView.vue'
 import FrontView from '../views/FrontView.vue'
 import FullMenu from '@/views/FullMenu.vue'
 import OrderView from '@/views/OrderView.vue'
+import OrderCompleteView from '@/views/OrderCompleteView.vue'
 
 
 function checkAuth() {
@@ -65,6 +66,11 @@ const router = createRouter({
       path: '/order', 
       name: 'order',
       component: OrderView
+    },
+    {
+      path: '/success', 
+      name: 'success',
+      component: OrderCompleteView
     }
   ],
   // scrollBehavior() {

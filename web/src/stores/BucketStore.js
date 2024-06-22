@@ -90,6 +90,11 @@ export const useBucketStore = defineStore('bucket', () => {
     reCostOrder()
     }
 
+    function clearBucket(){
+        order.value = []
+        localStorage.randomFood = JSON.stringify(order.value)
+    }
+
     function reCostOrder(){
         orderCost.value = 0
         for (let item of order.value){
@@ -98,5 +103,18 @@ export const useBucketStore = defineStore('bucket', () => {
         }
     }
 
-  return { bucket, buckLength, BuckExist, totPrice, order, deleteItem, addToBucket, addRandomItem, orderCost, reCostOrder }
+    function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();    
+          if (cookie.indexOf(name + '=') === 0) {
+            let cookieMass = []
+            cookieMass = cookie.substring(name.length + 1).split(',');
+            return cookieMass
+          }
+        }
+        return null;
+      }
+
+  return { bucket, buckLength, BuckExist, totPrice, order, deleteItem, addToBucket, addRandomItem, clearBucket, orderCost, reCostOrder, getCookie }
 })

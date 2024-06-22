@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import axios from 'axios';
 
-
 const username = ref('')
 const usersurname = ref('')
 const phonenum = ref('')
@@ -10,7 +9,27 @@ const email = ref('')
 const password = ref('')
 const error = ref('')
 
+const validateEmail = (email) => {
+  const re = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+  return re.test(String(email).toLowerCase());
+}
+
+const validatePhone = (phone) => {
+  const re = /^\+?[1-9]\d{1,14}$/; // Примерная регулярка для телефонов в международном формате
+  return re.test(String(phone));
+}
+
 const register = async () => {
+  if (!validateEmail(email.value)) {
+    error.value = 'Введите корректный адрес электронной почты';
+    return;
+  }
+
+  if (!validatePhone(phonenum.value)) {
+    error.value = 'Введите корректный номер телефона';
+    return;
+  }
+
   try {
     const response = await axios.post('/registrate', 
       { 
@@ -45,7 +64,8 @@ const register = async () => {
     <div class="login-layout">
       <form @submit.prevent="register">
         <div class="form-head">
-            <h3 class="title">Registration</h3><p v-if="error" class="title" style="color: red;">{{ error }}</p>
+            <h3 class="title">Registration</h3>
+            <p v-if="error" class="title" style="color: red;">{{ error }}</p>
         </div>
           <label for="username">Name</label>
           <input type="text" id="username" v-model="username" required>
@@ -62,6 +82,7 @@ const register = async () => {
       </form>
     </div>
   </template>
+
 
   
   <style scoped>

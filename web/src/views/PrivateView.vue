@@ -1,5 +1,14 @@
-<script>
+<script setup>
+import { useBucketStore } from '@/stores/BucketStore';
+import { onMounted, ref } from 'vue';
 
+const bucketStore = useBucketStore()
+let user = ref([])
+
+onMounted(
+    user.value = bucketStore.getCookie("user"),
+    console.log(user.value)
+)
 </script>
 
 <template>
@@ -10,13 +19,12 @@
             <h2>My profile</h2>
             <div class="info">
                 <div>
-                    <p>Username:{{ user.username }}</p>
-                    <p>Name:{{ user.firstName }}</p>
-                    <p>Lastnane:{{ user.lastName }}</p>
-                    <p>Gender:{{ user.gender }}</p>
-                    <p>Email:{{ user.email }}</p>
+                    <p>Username:{{ user[0] }}</p>
+                    <p>Lastnane:{{ user[1] }}</p>
+                    <p>Phone:{{ user[2] }}</p>
+                    <p>Email:{{ user[3] }}</p>
                 </div>
-                    <img :src="user.image" alt="pfp">
+                    <img :src="'https://www.kindpng.com/picc/m/150-1503949_computer-icons-user-profile-male-profile-icon-png.png'" alt="pfp">
             </div>
 
         </div>

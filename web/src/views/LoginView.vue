@@ -40,7 +40,7 @@ const login = async () => {
             <h3 class="title">Authorization</h3><p v-if="error" class="title" style="color: red;">{{ error }}</p>
         </div>
           <label for="email">Email</label>
-          <input type="text" id="email" v-model="email" required>
+          <input type="email" id="email" v-model="email" required>
           <label for="password">Password</label>
           <input type="password" id="password" v-model="password" required>
         <button type="submit">Submit</button>

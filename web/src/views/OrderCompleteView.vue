@@ -27,19 +27,14 @@ const order = async () => {
       		house: house.value,
 	  		corpus_building: corpus_building.value,
 	  		flat: flat.value,
-	  		totalPrice: orderCost.value,
-
-    	},
-		{
+	  		totalPrice: orderCost.value
+    	}, {
       		headers: { 'Content-Type': 'application/json' }
     	});
-		console.log(response.data)
 		if (response.data.success) {
-			console.log('success')
       		const data = await response.data;
       		error.value = data.message || 'Успешный вход'
-        	window.location.href = '/success'; 
-			// bucketStore.clearBucket()
+        	window.location.href = '/'; 
     	}
 
   	} catch (err) {
@@ -47,36 +42,19 @@ const order = async () => {
     	console.error(err);
   	}
 }
+			bucketStore.clearBucket()
 </script>
  
 <template >
 <section id="order" class="story">
 		<div class="container">
-			<h1 class="story__title">Основываясь на ваших предпочтениях:</h1>
-			<p class="offer__intro">(дважды кликните по товару, если он Вам не понравился)</p>
+			<h1 class="story__title">Ваш заказ создан!</h1>
+			<RouterLink to="/" class="offer__btn btn">
+			На главную
+			</RouterLink>
 		</div>
-		<div class="story-content container container_full-height" style="flex-direction: column;" id ="story-content">
-			<div class="story-content container container_full-height" style="padding: 0px;" id ="story-content">
-				<ProductItem v-for="product in bucketStore.order" :key="product.id_dish" :product="product"/>
-			</div>
-				<div class="adressInputText" style="width: 100%; padding: 40px;">Сумма заказа:   <b style="font-size: 24px;">{{  orderCost }} Р</b></div>
-		</div>
-		<form @submit.prevent="order">
-			<div class="adressField">
-				<label for="email" class="adressInputText">Выберите адрес для доставки:</label>
-			</div>
-			<div class="adressField">
-				<label for="email" class="adressInputText">Улица:</label>
-				<input style="width: 300px;" class="adressInput" type="text" id="email" v-model="street" required>
-				<label for="email" class="adressInputText">Дом:</label>
-				<input style="width: 100px;" class="adressInput" type='number' id="email" v-model="house" required>
-				<label for="email" class="adressInputText">Корпус:</label>
-				<input style="width: 100px;" class="adressInput" type='number' id="email" v-model="corpus_building">
-				<label for="email" class="adressInputText">Квартира:</label>
-				<input style="width: 100px;" class="adressInput" type='number' id="email" v-model="flat" required>
-			</div>
-			<button class="offer__btn btn">Заказать</button>
-		</form>
+
+
 </section>
 </template>
 
@@ -111,7 +89,7 @@ button{
 	font-weight: 800;
 	display: block;
 	width: 244px;
-	margin: 0 auto;
+	margin-top: 10vh;
 	transition: all 0.5s ease; /*- чтобы при наведении на кнопку, цвет кнопки менялся плавно*/
 	text-align: center;
 }
