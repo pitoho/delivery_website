@@ -93,6 +93,7 @@ export const useBucketStore = defineStore('bucket', () => {
     function clearBucket(){
         order.value = []
         localStorage.randomFood = JSON.stringify(order.value)
+        reCostOrder()
     }
 
     function reCostOrder(){
