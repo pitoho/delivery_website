@@ -7,10 +7,10 @@ let user = ref([])
 let orders = ref([])
 
 onMounted(
-    user.value = bucketStore.getCookie("user"),
-    console.log(user.value),
-    orders.value = JSON.parse(bucketStore.getCookie("orders")),
-    console.log(orders.value)
+    user.value = bucketStore.getCookie("user").slice(1,-1).split(","),
+    // console.log(user.value),
+    orders.value = JSON.parse(decodeURIComponent(bucketStore.getCookie("orders")).replaceAll('+',' ')),
+    // console.log(orders.value)
 )
 </script>
 

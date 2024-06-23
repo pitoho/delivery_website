@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"net/url"
 	"net/http"
 )
 func getUserForPrivate(db *sql.DB) func(http.ResponseWriter, *http.Request) {
@@ -61,9 +62,10 @@ func getUserForPrivate(db *sql.DB) func(http.ResponseWriter, *http.Request) {
 			Value: user.Username + "," + user.Usersurname + "," + user.Phonenum + "," + user.Email,
 			Path: "/", 
 		})
+		encodedOrdersJSON := url.QueryEscape(string(ordersJSON))
 		http.SetCookie(w, &http.Cookie{
 			Name:  "orders",
-			Value: string(ordersJSON),
+			Value: encodedOrdersJSON,
 			Path: "/", 
 		})
 	
