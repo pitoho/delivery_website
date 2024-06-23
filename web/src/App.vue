@@ -47,17 +47,27 @@ for (let anchor of anchors) {
     </RouterView>
 
     <footer>
-    <router-link to="/"><img class="foot-img" src="./images/home.png" alt=""></router-link>
-    <router-link to="/public"><img class="foot-img" src="./images/heart.png" alt=""></router-link>
-    <router-link to="/order"><img class="foot-img" src="./images/bag-2.png" alt=""></router-link>
-    <router-link to="/private"><img class="foot-img" src="./images/profile-circle.png" alt=""></router-link>
+    <router-link class="route" to="/"><img class="foot-img" src="./images/home.png" alt=""></router-link>
+    <router-link class="route" to="/public"><img class="foot-img" src="./images/heart.png" alt=""></router-link>
+    <router-link class="route" to="/order"><img class="foot-img" src="./images/bag-2.png" alt=""></router-link>
+    <router-link class="route" to="/private"><img class="foot-img" src="./images/profile-circle.png" alt=""></router-link>
   </footer>
   </div>
 </template>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=ABeeZee&family=Heebo:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-  
+
+.route {
+  text-decoration: none;
+  -webkit-filter: brightness(0) invert(0.7);
+  filter: brightness(0) invert(0.7);
+}
+.route:hover{
+  -webkit-filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
+}
+
 body {
 	font-family: 'Open Sans', sans-serif;
 	padding: 0;

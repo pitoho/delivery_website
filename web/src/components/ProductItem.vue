@@ -47,7 +47,7 @@
   }
   
   .product-image {
-    width: 100%;
-    height: auto;
+    width: 200px;
+    height: 200px;
   }
   </style>

@@ -56,7 +56,7 @@ const order = async () => {
 			<p class="offer__intro">(дважды кликните по товару, если он Вам не понравился)</p>
 		</div>
 		<div class="story-content container container_full-height" style="flex-direction: column;" id ="story-content">
-			<div class="story-content container container_full-height" style="padding: 0px;" id ="story-content">
+			<div class="story-content container container_full-height forScroll" style="padding: 0px;" id ="story-content">
 				<ProductItem v-for="product in bucketStore.order" :key="product.id_dish" :product="product"/>
 			</div>
 				<div class="adressInputText" style="width: 100%; padding: 40px;">Сумма заказа:   <b style="font-size: 24px;">{{  orderCost }} Р</b></div>
@@ -143,6 +143,10 @@ button{
 	background: #F1F1F5 no-repeat right / 55%;
 	height: fit-content;
 	display: flex;
+}
+
+.forScroll{
+	overflow-x: scroll;
 }
 
 .story-content__item {
