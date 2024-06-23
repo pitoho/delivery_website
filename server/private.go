@@ -25,8 +25,6 @@ func getUserForPrivate(db *sql.DB) func(http.ResponseWriter, *http.Request) {
 			fmt.Println("Ошибка при получении user_id:", err)
 		}
 
-		w.Header().Set("Set-Cookie", "user="+user.Username+","+user.Usersurname+","+user.Phonenum+","+user.Email+"; Path=/; HttpOnly: true")
-
 		rows, err := db.Query("SELECT * FROM get_user_orders($1)", userId)
         if err != nil {
             http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -48,20 +46,28 @@ func getUserForPrivate(db *sql.DB) func(http.ResponseWriter, *http.Request) {
             http.Error(w, err.Error(), http.StatusInternalServerError)
             return
         }
-
-        // Преобразование массива заказов в JSON
         ordersJSON, err := json.Marshal(orders)
         if err != nil {
             http.Error(w, err.Error(), http.StatusInternalServerError)
             return
         }
+		// fmt.Println(ordersJSON)
 
-        // Отправка JSON-данных клиенту
-        w.Header().Set("Set-Cookie", "orders="+ string(ordersJSON) +"; Path=/; HttpOnly: true")
+		// w.Header().Set("Set-Cookie", "user=" + user.Username + "," + user.Usersurname + "," + user.Phonenum + "," + user.Email + "; Path=/; HttpOnly: true")
+        // w.Header().Set("Set-Cookie", "orders="+ string(ordersJSON) +"; Path=/; HttpOnly: true", )
 
-        
+		http.SetCookie(w, &http.Cookie{
+			Name:  "user",
+			Value: user.Username + "," + user.Usersurname + "," + user.Phonenum + "," + user.Email,
+			Path: "/", 
+		})
+		http.SetCookie(w, &http.Cookie{
+			Name:  "orders",
+			Value: string(ordersJSON),
+			Path: "/", 
+		})
+	
 
-        // Отправка HTML-файла, если метод GET
         if r.Method == "GET" {
             http.ServeFile(w, r, "../web/dist/index.html")
         }

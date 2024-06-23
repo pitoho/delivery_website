@@ -113,7 +113,7 @@ export const useBucketStore = defineStore('bucket', () => {
           }
         }
         return null;
-      }
+    }
 
   return { bucket, buckLength, BuckExist, totPrice, order, deleteItem, addToBucket, addRandomItem, clearBucket, orderCost, reCostOrder, getCookie }
 })
