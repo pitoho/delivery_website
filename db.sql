@@ -203,7 +203,19 @@ select * from Order_Storage
 select * from get_user_orders(18);
 ------------------------------------------------
 
-select * from user_data
+select * from tags
+	
+insert into Tags (
+tag
+) values
+('garnir_fried'),
+('garnir_boiled'),
+('base_sea'),
+('base_meat'),
+('base_vegan'),
+('drink_tea'),
+('drink_alc'),
+('drink_gas')
 
 
 --Insert values for garnir_fried
