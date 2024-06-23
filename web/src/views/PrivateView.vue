@@ -1,17 +1,30 @@
 <script setup>
 import { useBucketStore } from '@/stores/BucketStore';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 const bucketStore = useBucketStore()
 let user = ref([])
-let orders = ref([])
+let orders = ref(JSON.parse(decodeURIComponent(bucketStore.getCookie("orders")).replaceAll('+',' ')))
+if (orders.value == null){
+    orders.value = []
+} else {
+    orders.value = JSON.parse(decodeURIComponent(bucketStore.getCookie("orders")).replaceAll('+',' ')).reverse()
+}
 
 onMounted(
     user.value = bucketStore.getCookie("user").slice(1,-1).split(","),
     // console.log(user.value),
-    orders.value = JSON.parse(decodeURIComponent(bucketStore.getCookie("orders")).replaceAll('+',' ')),
-    // console.log(orders.value)
 )
+
+watch(()=>bucketStore.orderCost,
+            (newPrice) => {
+                // orders.value = JSON.parse(decodeURIComponent(bucketStore.getCookie("orders")).replaceAll('+',' '))
+                console.log(newPrice)
+            })
+
+
+    // console.log(orders.value.lenght)
+console.log(orders.value)
 </script>
 
 <template>
@@ -32,17 +45,35 @@ onMounted(
 
         </div>
       </div>
+      <h2>ORDERS</h2>
+                    <div class="orders">
+                        <p class="orderCard" v-for="order of orders" :key="order.id_order">
+                        <p>Заказ номер {{ order.id_order }}, заказан {{ order.order_time.slice(0,10) }} в {{ order.order_time.slice(11,19) }}</p> <p>цена: {{ order.total_price }}Р</p> <p style="color: green;">{{ order.order_status.toUpperCase() }}</p>
+                        </p>
+                    </div>
     </div>
   </template>
 
 <style scoped>
+.orderCard{
+    min-width: 320px;
+}
+.orders{
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y:visible;
+    gap: 40px;
+    padding: 20px;
+    height: fit-content
+}
     .user-layout{
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        height: 500px;
-        margin-top: 15vh
+        height: fit-content;
+        margin-top: 10vh
     }
     .error{
         color: rgb(33, 36, 61);
@@ -62,7 +93,7 @@ onMounted(
         margin-top: 70px;
     }
     .user-content{
-        height: 500px;
+        height: fit-content;
         width: 600px;
 
         margin-left: auto;

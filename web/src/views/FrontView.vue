@@ -2,9 +2,12 @@
 <script setup>
 import ProductItem from '@/components/ProductItem.vue';
 import { useBucketStore } from '@/stores/BucketStore';
+import { onMounted } from 'vue';
 const bucketStore = useBucketStore()
 
-const anchors = document.querySelectorAll('a[href*="#"]')
+onMounted(() => {
+	const anchors = document.querySelectorAll('a[href*="#"]')
+console.log(anchors)
 
 for (let anchor of anchors) {
   anchor.addEventListener('click', function (e) {
@@ -18,6 +21,9 @@ for (let anchor of anchors) {
     })
   })
 }
+}
+)
+
 
 function addToOrder(tag){
 	bucketStore.addRandomItem(tag)
@@ -40,9 +46,6 @@ function addToOrder(tag){
 					Вам лень выбирать?<br />
 					Всего 3 шага, и заказ уже в пути!:
 				</p>
-				<a href="#footer" class="offer__btn btn">
-					Узнать больше
-				</a>
 			</div>
 			<a href="#procrast" class="arrow-down"></a>
 		</div>
@@ -205,7 +208,7 @@ function addToOrder(tag){
 					
 				</p>
 		</div>
-		<div class="story-content" id ="story-content">
+		<div class="story-content" id ="story-content" style="height: auto;">
 			<div class="container container_full-height">
 				<ProductItem v-for="product in bucketStore.order" :key="product.id_dish" :product="product" />
 			</div>

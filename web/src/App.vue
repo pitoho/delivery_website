@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 
 const anchors = document.querySelectorAll('a[href*="#"]')
+// console.log(anchors)
 
 for (let anchor of anchors) {
   anchor.addEventListener('click', function (e) {
@@ -65,7 +66,6 @@ body {
 	font-weight: 400;
 	color: #2D3049;
 	letter-spacing: 0.05em;
-	background-image: url("../img/white-needle.png");
 	overflow: hidden;
 }
    /* body{ 

@@ -81,14 +81,23 @@ export const useBucketStore = defineStore('bucket', () => {
     reCostOrder()
    }
 
-   function addRandomItem(tag){
-    let neededProducts = bucket.value.filter(elem => elem.tags_id == tag)
-    let item = neededProducts[Math.floor(Math.random()*neededProducts.length)];
-    console.log('Added product with tag_id ' + tag + ' and id of product ' + item.id_dish)
-    order.value.push(item)
-    localStorage.randomFood = JSON.stringify(order.value)
-    reCostOrder()
+   function addRandomItem(tag) {
+    let neededProducts = bucket.value.filter(elem => elem.tags_id == tag);
+    let item = neededProducts[Math.floor(Math.random() * neededProducts.length)];
+
+    // Проверка наличия item с таким же id_dish в order.value
+    let itemExists = order.value.some(existingItem => existingItem.id_dish === item.id_dish);
+
+    if (!itemExists) {
+        console.log('Added product with tag_id ' + tag + ' and id of product ' + item.id_dish);
+        order.value.push(item);
+        localStorage.randomFood = JSON.stringify(order.value);
+        reCostOrder();
+    } else {
+        console.log('Product with id_dish ' + item.id_dish + ' already exists in the order');
     }
+}
+
 
     function clearBucket(){
         order.value = []
@@ -114,6 +123,7 @@ export const useBucketStore = defineStore('bucket', () => {
         }
         return null;
     }
+
 
   return { bucket, buckLength, BuckExist, totPrice, order, deleteItem, addToBucket, addRandomItem, clearBucket, orderCost, reCostOrder, getCookie }
 })
